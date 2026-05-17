@@ -629,6 +629,56 @@
       background: var(--paper-strong);
     }
 
+    .aeo-answer,
+    .godoy-box,
+    .faq-item {
+      border: 1px solid var(--line);
+      background: var(--paper-strong);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .aeo-answer {
+      margin: 18px 0 0;
+      padding: 18px 20px;
+      border-left: 5px solid var(--teal);
+      border-radius: 18px;
+      color: var(--ink);
+      font-size: 1.02rem;
+      line-height: 1.65;
+    }
+
+    .godoy-box {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 16px;
+    }
+
+    .godoy-box h4,
+    .faq-item h4 {
+      margin: 0 0 8px;
+      color: var(--ink);
+      font-size: 1rem;
+    }
+
+    .godoy-box p,
+    .faq-item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .faq-list {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .faq-item {
+      padding: 16px;
+      border-radius: 16px;
+    }
+
     .lesson-player {
       height: 92px;
     }
@@ -690,6 +740,9 @@
       .review-grid {
         grid-template-columns: 1fr;
       }
+      .faq-list {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 760px) {
@@ -718,6 +771,9 @@
     <header class="hero" id="topo">
       <p class="eyebrow">História Econômica do Brasil · Prova 2</p>
       <h1>Central de revisão das aulas 12 a 20</h1>
+      <blockquote class="aeo-answer">
+        Este site organiza as aulas 12 a 20 de História Econômica do Brasil para a Prova 2, com foco no que o Prof. Godoi cobra: relações entre República Velha, capitalismo internacional, crise de 1930, Era Vargas, Estado econômico e industrialização.
+      </blockquote>
       <p class="hero-copy">
         Esta versão atualiza o site para as unidades 3 e 4, cobrindo República Velha, transição capitalista, Revolução de 1930, Era Vargas, política econômica, instituições e origens da industrialização. O formato segue o site anterior: aulas em blocos, conceitos-chave, perguntas-guia, revisão final e acesso direto às mídias no Drive.
       </p>
@@ -728,13 +784,13 @@
           <ul class="hero-list">
             <li>Leia primeiro o resumo de cada aula e depois use os cards para fixar conceitos, autores e cronologia.</li>
             <li>Use as perguntas-guia como treino de resposta discursiva.</li>
-            <li>Abra os podcasts e vídeos pelo Drive quando quiser revisar em áudio ou vídeo.</li>
+            <li>Use o mini player de cada aula para revisar o podcast sem sair da página.</li>
             <li>Feche pela revisão final para cruzar República Velha, 1930, Vargas e industrialização.</li>
           </ul>
           <div class="pill-row">
             <span class="pill">Aulas 12–16: Unidade 3</span>
             <span class="pill">Aulas 17–20: Unidade 4</span>
-            <span class="pill">Base: roteiro HEB + NotebookLM</span>
+            <span class="pill">Base: roteiro HEB + anotações do Drive</span>
             <span class="pill">Mídias: Google Drive</span>
           </div>
         </section>
@@ -745,7 +801,7 @@
             <div class="stat"><b>Aulas</b>9 aulas em ordem cronológica</div>
             <div class="stat"><b>Unidades</b>República Velha e Era Vargas</div>
             <div class="stat"><b>Temas críticos</b>Oligarquias, imperialismo, 1930, Estado e industrialização</div>
-            <div class="stat"><b>Mídias</b>Podcasts e vídeos redirecionados para o Drive</div>
+            <div class="stat"><b>Mídias</b>Podcasts incorporados e materiais do Drive</div>
           </div>
         </aside>
       </div>
@@ -829,6 +885,10 @@
               <article class="card"><p class="card-kicker">Pergunta-guia</p><h4>Treino discursivo</h4><ul><li>Como a Primeira República pôde ser liberal no plano institucional e oligárquica na prática política?</li></ul></article>
               <article class="card"><p class="card-kicker">Armadilha</p><h4>Como não errar</h4><ul><li>Não confundir República com democratização efetiva.</li><li>Não tratar a política do café com leite como acordo sempre automático e sem conflitos.</li></ul></article>
             </div>
+            <div class="godoy-box">
+              <h4>Como o Prof. Godoi tende a cobrar</h4>
+              <p>Explique a pirâmide oligárquica: coronel no município, oligarquia estadual entregando votos e governo federal preservando alianças. A estabilidade da Primeira República vinha de relações clientelistas recíprocas, não de democracia efetiva.</p>
+            </div>
             <div class="lesson-media">
               <p class="section-kicker">Podcast da aula 12</p>
               <iframe class="drive-audio lesson-player" src="https://drive.google.com/file/d/1NSHGII1DDe-hWTSleaZfbfqFX3XQstVo/preview" title="Podcast - Aula 12" loading="lazy" allow="autoplay"></iframe>
@@ -857,7 +917,11 @@
               <article class="card"><p class="card-kicker">Pontos principais</p><h4>Núcleo da aula</h4><ul><li>República Velha como transição capitalista.</li><li>Café como base econômica e articulador de setores modernos.</li><li>Imperialismo como exploração e modernização contraditória.</li><li>Internacionalização crescente da economia brasileira.</li></ul></article>
               <article class="card"><p class="card-kicker">Conceitos-chave</p><h4>Termos centrais</h4><ul><li>República Burguesa</li><li>Capitalismo dependente</li><li>Imperialismo</li><li>Agroexportação</li></ul></article>
               <article class="card"><p class="card-kicker">Pergunta-guia</p><h4>Treino discursivo</h4><ul><li>Por que Caio Prado vê a República Velha como transição capitalista, mas não como industrialização plena?</li></ul></article>
-              <article class="card"><p class="card-kicker">Conexão</p><h4>Ligação com a aula 14</h4><ul><li>A aula 13 abre o problema; a aula 14 aprofunda a inserção externa com Paul Singer.</li></ul></article>
+              <article class="card"><p class="card-kicker">Conexão</p><h4>Ligação com aulas 14 e 15</h4><ul><li>A aula 14 aprofunda a política econômica; a aula 15 retoma a inserção externa com Paul Singer.</li></ul></article>
+            </div>
+            <div class="godoy-box">
+              <h4>Como o Prof. Godoi tende a cobrar</h4>
+              <p>Mostre o apogeu do sistema primário-exportador sem reduzir tudo ao café. A resposta forte cruza imigração, ferrovias, crédito, mercado de trabalho, capital estrangeiro e as limitações da leitura de Caio Prado sobre indústria e trabalho livre.</p>
             </div>
             <div class="lesson-media">
               <p class="section-kicker">Podcast da aula 13</p>
@@ -889,6 +953,10 @@
               <article class="card"><p class="card-kicker">Pergunta-guia</p><h4>Treino discursivo</h4><ul><li>Como a política econômica da Primeira República revela os limites da modernização agroexportadora?</li></ul></article>
               <article class="card"><p class="card-kicker">Atenção</p><h4>Formulação forte</h4><ul><li>Mostre que moeda, câmbio e café fazem parte do mesmo problema histórico.</li></ul></article>
             </div>
+            <div class="godoy-box">
+              <h4>Como o Prof. Godoi tende a cobrar</h4>
+              <p>Não trate política econômica como escolha técnica isolada. Compare Franco, Fritsch e Francisco de Oliveira: papelistas, metalistas, crises externas, pressão de credores e divisão social do trabalho aparecem como debate historiográfico.</p>
+            </div>
             <div class="lesson-media">
               <p class="section-kicker">Podcast da aula 14</p>
               <iframe class="drive-audio lesson-player" src="https://drive.google.com/file/d/1QEa6KhupRoul_pHNckjxT1wR0YkKBRPT/preview" title="Podcast - Aula 14" loading="lazy" allow="autoplay"></iframe>
@@ -919,6 +987,10 @@
               <article class="card"><p class="card-kicker">Pergunta-guia</p><h4>Treino discursivo</h4><ul><li>Como o imperialismo pôde modernizar a economia brasileira e, ao mesmo tempo, aprofundar sua dependência?</li></ul></article>
               <article class="card"><p class="card-kicker">Atenção</p><h4>Formulação forte</h4><ul><li>Use a ideia de contradição: impulso modernizador e subordinação externa acontecem juntos.</li></ul></article>
             </div>
+            <div class="godoy-box">
+              <h4>Como o Prof. Godoi tende a cobrar</h4>
+              <p>Compare Singer com Caio Prado: a inserção internacional é periférica, primário-exportadora e subordinada, mas também organiza ferrovias, energia, finanças e comércio. Dívida externa deve aparecer como mecanismo de dominação.</p>
+            </div>
             <div class="lesson-media">
               <p class="section-kicker">Podcast da aula 15</p>
               <iframe class="drive-audio lesson-player" src="https://drive.google.com/file/d/1dKIrX3lempKwjH1aoicvZdWCJyB6YXoH/preview" title="Podcast - Aula 15" loading="lazy" allow="autoplay"></iframe>
@@ -948,6 +1020,10 @@
               <article class="card"><p class="card-kicker">Conceitos-chave</p><h4>Vocabulário necessário</h4><ul><li>Revolução burguesa</li><li>Crise oligárquica</li><li>Tenentismo</li><li>Centralização estatal</li></ul></article>
               <article class="card"><p class="card-kicker">Pergunta-guia</p><h4>Treino discursivo</h4><ul><li>Por que a Revolução de 1930 deve ser entendida como transição histórica e não apenas como troca de governo?</li></ul></article>
               <article class="card"><p class="card-kicker">Atenção</p><h4>Erro comum</h4><ul><li>Não apresentar 1930 como ruptura total e imediata; o processo é gradual, contraditório e incompleto.</li></ul></article>
+            </div>
+            <div class="godoy-box">
+              <h4>Como o Prof. Godoi tende a cobrar</h4>
+              <p>Encare 1930 como transição longa e revolução burguesa peculiar, incompleta e contraditória. O fator decisivo não é uma classe média autônoma conduzindo tudo, mas a crise intraoligárquica que abre espaço para o Estado centralizado.</p>
             </div>
             <div class="lesson-media">
               <p class="section-kicker">Podcast da aula 16</p>
@@ -998,6 +1074,10 @@
               <article class="card"><p class="card-kicker">Pergunta-guia</p><h4>Treino discursivo</h4><ul><li>Por que a Era Vargas deve ser entendida como projeto histórico de longa duração?</li></ul></article>
               <article class="card"><p class="card-kicker">Conexão</p><h4>Ligação com aulas 18 e 19</h4><ul><li>A política econômica e as instituições dão forma concreta ao projeto varguista.</li></ul></article>
             </div>
+            <div class="godoy-box">
+              <h4>Como o Prof. Godoi tende a cobrar</h4>
+              <p>Defina a ruptura institucional de 1930: centralização, interventores, perda de autonomia estadual e novo Estado planejador. Amarre os três pilares do varguismo: desenvolvimentismo, trabalhismo e nacionalismo.</p>
+            </div>
             <div class="lesson-media">
               <p class="section-kicker">Podcast da aula 17</p>
               <iframe class="drive-audio lesson-player" src="https://drive.google.com/file/d/1BCSyUhz7tHH3kDdYGngUwRQWxRXm4M3t/preview" title="Podcast - Aula 17" loading="lazy" allow="autoplay"></iframe>
@@ -1024,6 +1104,10 @@
               <article class="card"><p class="card-kicker">Conceitos-chave</p><h4>Vocabulário necessário</h4><ul><li>Defesa do café</li><li>Renda interna</li><li>Substituição de importações</li><li>Política anticíclica</li></ul></article>
               <article class="card"><p class="card-kicker">Pergunta-guia</p><h4>Treino discursivo</h4><ul><li>Como a política econômica diante da crise de 1929 ajudou a deslocar o dinamismo para o mercado interno?</li></ul></article>
               <article class="card"><p class="card-kicker">Atenção</p><h4>Formulação forte</h4><ul><li>A defesa do café era voltada ao setor exportador, mas seus efeitos estimularam a indústria.</li></ul></article>
+            </div>
+            <div class="godoy-box">
+              <h4>Como o Prof. Godoi tende a cobrar</h4>
+              <p>Essa é uma aula prioritária: apresente a sequência causal de Furtado. Crise de 1929, defesa do café, financiamento interno, manutenção da renda, capacidade ociosa industrial e substituição de importações. Não diga que a industrialização foi planejada desde o início.</p>
             </div>
             <div class="lesson-media">
               <p class="section-kicker">Podcast da aula 18</p>
@@ -1052,6 +1136,10 @@
               <article class="card"><p class="card-kicker">Pergunta-guia</p><h4>Treino discursivo</h4><ul><li>Por que a construção institucional do Estado foi decisiva para a industrialização brasileira?</li></ul></article>
               <article class="card"><p class="card-kicker">Armadilha</p><h4>Como não errar</h4><ul><li>Não atribuir a industrialização apenas à burguesia industrial; o Estado é ator central.</li></ul></article>
             </div>
+            <div class="godoy-box">
+              <h4>Como o Prof. Godoi tende a cobrar</h4>
+              <p>Use Sonia Draibe para mostrar o Estado de Compromisso: centralização política com autonomia relativa para arbitrar conflitos. A resposta deve citar o aparelho econômico estatal e separar 1930-1937 de 1937-1945.</p>
+            </div>
             <div class="lesson-media">
               <p class="section-kicker">Podcast da aula 19</p>
               <iframe class="drive-audio lesson-player" src="https://drive.google.com/file/d/1tmz0XbEX6ho6dZSutj1ZHdNrQb0SfzpU/preview" title="Podcast - Aula 19" loading="lazy" allow="autoplay"></iframe>
@@ -1079,6 +1167,10 @@
               <article class="card"><p class="card-kicker">Pergunta-guia</p><h4>Treino discursivo</h4><ul><li>Por que a industrialização brasileira deve ser explicada por múltiplos fatores e não por uma causa única?</li></ul></article>
               <article class="card"><p class="card-kicker">Conexão</p><h4>Fechamento da unidade</h4><ul><li>A aula 20 amarra café, crise, Estado, mercado interno e política econômica.</li></ul></article>
             </div>
+            <div class="godoy-box">
+              <h4>Como o Prof. Godoi tende a cobrar</h4>
+              <p>Prepare a pergunta clássica de Suzigan: caracterizar as quatro óticas interpretativas. Em todas, explique a relação café-indústria: renda, trabalho assalariado, transportes, bancos, mercado consumidor, impostos e divisas para máquinas.</p>
+            </div>
             <div class="lesson-media">
               <p class="section-kicker">Podcast da aula 20</p>
               <iframe class="drive-audio lesson-player" src="https://drive.google.com/file/d/1CQo_NoKkStKGT88oBHXi0IFJwMEKM5Dj/preview" title="Podcast - Aula 20" loading="lazy" allow="autoplay"></iframe>
@@ -1094,28 +1186,28 @@
     </section>
 
     <section class="panel" id="midias">
-      <p class="section-kicker">Podcasts e vídeos</p>
+      <p class="section-kicker">Podcasts e materiais</p>
       <h2>Mini player do Google Drive</h2>
       <div class="panel-grid">
         <article class="mini-card">
           <p class="section-kicker">Biblioteca incorporada</p>
-          <p>Os podcasts e vídeos das aulas já estão prontos no Drive. A janela abaixo carrega a pasta diretamente dentro do site; se o Google bloquear a visualização incorporada em algum navegador, use o link de abertura externa.</p>
+          <p>Os podcasts das aulas estão incorporados abaixo de cada aula, com link direto para o texto base e para o caderno mágico. A janela abaixo carrega a pasta principal do Drive; se o Google bloquear a visualização incorporada em algum navegador, use o link externo.</p>
           <iframe
             class="drive-audio"
             style="height: 360px; margin-top: 16px;"
             src="https://drive.google.com/embeddedfolderview?id=1zgWE_e8xRL-fKyGXwDzAGMllQKpypUqS#grid"
-            title="Podcasts e vídeos HEB - Prova 2"
+            title="Podcasts e materiais HEB - Prova 2"
             loading="lazy"
             allow="autoplay; fullscreen"
           ></iframe>
-          <div class="audio-fallback"><a href="https://drive.google.com/drive/folders/1zgWE_e8xRL-fKyGXwDzAGMllQKpypUqS" target="_blank" rel="noopener noreferrer">Abrir pasta de podcasts e vídeos no Drive</a></div>
+          <div class="audio-fallback"><a href="https://drive.google.com/drive/folders/1zgWE_e8xRL-fKyGXwDzAGMllQKpypUqS" target="_blank" rel="noopener noreferrer">Abrir pasta de podcasts e materiais no Drive</a></div>
         </article>
         <article class="mini-card">
           <p class="section-kicker">Sugestão de uso</p>
           <ul class="mini-list">
             <li>Abra o Drive após ler cada aula.</li>
             <li>Use o podcast para revisão passiva.</li>
-            <li>Use o vídeo para revisar a estrutura argumentativa antes da prova.</li>
+            <li>Use texto base e caderno mágico para conferir os pontos de cobrança.</li>
             <li>Volte para a revisão final para treinar respostas completas.</li>
           </ul>
         </article>
@@ -1174,6 +1266,15 @@
             <li>Celso Furtado, Sonia Draibe e Wilson Suzigan: crise, Estado e industrialização.</li>
           </ul>
         </article>
+      </div>
+
+      <div class="faq-list" aria-label="Perguntas frequentes de revisão">
+        <article class="faq-item"><h4>Qual é a fórmula da aula 12?</h4><p>Constituição liberal, prática oligárquica e controle eleitoral. A resposta deve mostrar a pirâmide coronel, oligarquia estadual e governo federal.</p></article>
+        <article class="faq-item"><h4>O que diferencia Caio Prado e Singer?</h4><p>Caio Prado enfatiza a transição capitalista; Singer mede a inserção periférica no capitalismo internacional, com dívida, capitais externos e dependência.</p></article>
+        <article class="faq-item"><h4>Como responder política econômica da Primeira República?</h4><p>Relacione moeda, câmbio, café e crise externa. Papelistas e metalistas representam interesses e diagnósticos diferentes sobre estabilidade e expansão.</p></article>
+        <article class="faq-item"><h4>Por que 1930 não é só troca de governo?</h4><p>Porque fecha uma crise de longo prazo da ordem oligárquica e abre centralização estatal, intervenção econômica e nova relação entre Estado e classes.</p></article>
+        <article class="faq-item"><h4>Qual é o ponto decisivo de Furtado?</h4><p>A defesa do café preservou renda interna e, sem intenção industrializante inicial, favoreceu mercado interno, capacidade ociosa e substituição de importações.</p></article>
+        <article class="faq-item"><h4>O que Suzigan organiza na aula 20?</h4><p>Ele organiza quatro óticas interpretativas das origens da industrialização e mantém a relação café-indústria como eixo comum do debate.</p></article>
       </div>
 
       <div class="timeline">
