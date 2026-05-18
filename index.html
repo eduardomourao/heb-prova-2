@@ -347,6 +347,74 @@
       flex-wrap: wrap;
     }
 
+    .study-tools {
+      margin-top: 12px;
+      padding: 14px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: 1.2fr auto auto auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .study-tools input,
+    .study-tools select {
+      width: 100%;
+      min-height: 40px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--button-bg);
+      color: var(--ink);
+      padding: 8px 10px;
+      font: inherit;
+    }
+
+    .tool-progress {
+      font-size: 0.9rem;
+      color: var(--muted);
+      font-weight: 700;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .lesson-utility {
+      margin: 14px 0 8px;
+      padding: 10px;
+      border: 1px dashed var(--line-strong);
+      border-radius: 12px;
+      background: var(--surface-soft);
+      display: grid;
+      gap: 8px;
+    }
+
+    .lesson-utility-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 0.86rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .lesson-utility textarea {
+      width: 100%;
+      min-height: 94px;
+      resize: vertical;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--paper-strong);
+      color: var(--ink);
+      padding: 10px;
+      font: inherit;
+      line-height: 1.45;
+    }
+
 
     .panel {
       margin-top: 18px;
@@ -756,6 +824,12 @@
       .review-grid {
         grid-template-columns: 1fr;
       }
+      .study-tools {
+        grid-template-columns: 1fr 1fr;
+      }
+      .tool-progress {
+        text-align: left;
+      }
       .faq-list {
         grid-template-columns: 1fr;
       }
@@ -777,6 +851,9 @@
       }
       .card-grid,
       .stats {
+        grid-template-columns: 1fr;
+      }
+      .study-tools {
         grid-template-columns: 1fr;
       }
     }
@@ -838,6 +915,16 @@
           <button type="button" id="expand-all">Expandir aulas</button>
           <button type="button" id="collapse-all">Recolher aulas</button>
         </div>
+      </div>
+      <div class="study-tools" aria-label="Ferramentas rápidas de estudo">
+        <input id="lesson-search" type="search" placeholder="Buscar aula, autor, conceito, tema..." autocomplete="off">
+        <select id="lesson-filter">
+          <option value="all">Todas as aulas</option>
+          <option value="pending">Somente pendentes</option>
+          <option value="done">Somente revisadas</option>
+        </select>
+        <button type="button" id="open-next">Abrir próxima pendente</button>
+        <div class="tool-progress" id="study-progress">Progresso: 0/9 revisadas</div>
       </div>
 
     </div>
@@ -1465,13 +1552,19 @@
   </div>
 
   <script>
-    const lessons = document.querySelectorAll('.lesson');
+    const lessons = Array.from(document.querySelectorAll('.lesson'));
     const themeToggle = document.getElementById('theme-toggle');
     const expandAll = document.getElementById('expand-all');
     const collapseAll = document.getElementById('collapse-all');
     const navLinks = document.querySelectorAll('#top-nav a');
     const sections = document.querySelectorAll('#escopo, #unit-3, #unit-4, #revisao-final');
+    const lessonSearch = document.getElementById('lesson-search');
+    const lessonFilter = document.getElementById('lesson-filter');
+    const openNext = document.getElementById('open-next');
+    const progressLabel = document.getElementById('study-progress');
     const THEME_KEY = 'heb-theme';
+    const REVIEW_KEY = 'heb-review-status-v1';
+    const NOTE_KEY = 'heb-lesson-notes-v1';
     const root = document.documentElement;
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const safeGetTheme = () => {
@@ -1529,6 +1622,93 @@
         });
       });
     });
+
+    const readJsonStorage = (key, fallback) => {
+      try {
+        const raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+      } catch {
+        return fallback;
+      }
+    };
+    const writeJsonStorage = (key, value) => {
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+      } catch {
+        // storage may be blocked
+      }
+    };
+
+    const reviewState = readJsonStorage(REVIEW_KEY, {});
+    const noteState = readJsonStorage(NOTE_KEY, {});
+
+    const updateProgress = () => {
+      const total = lessons.length;
+      const done = lessons.filter((lesson) => reviewState[lesson.id]).length;
+      if (progressLabel) progressLabel.textContent = `Progresso: ${done}/${total} revisadas`;
+    };
+
+    const applyFilters = () => {
+      const q = (lessonSearch?.value || '').trim().toLowerCase();
+      const mode = lessonFilter?.value || 'all';
+      lessons.forEach((lesson) => {
+        const text = lesson.textContent.toLowerCase();
+        const matchText = !q || text.includes(q);
+        const reviewed = Boolean(reviewState[lesson.id]);
+        const matchMode = mode === 'all' || (mode === 'done' && reviewed) || (mode === 'pending' && !reviewed);
+        lesson.style.display = matchText && matchMode ? '' : 'none';
+      });
+    };
+
+    lessons.forEach((lesson, index) => {
+      const body = lesson.querySelector('.lesson-body');
+      if (!body || !lesson.id) return;
+      const lessonNum = `A${lesson.id.replace('aula-', '')}`;
+      const util = document.createElement('div');
+      util.className = 'lesson-utility';
+      util.innerHTML = `
+        <div class="lesson-utility-head">
+          <span>Controle de revisão da ${lessonNum}</span>
+          <label><input type="checkbox" data-review-check="${lesson.id}"> Aula revisada</label>
+        </div>
+        <textarea data-note="${lesson.id}" placeholder="Anotações rápidas: tese do autor, sequência causal, possíveis perguntas de prova..."></textarea>
+      `;
+      body.prepend(util);
+
+      const check = util.querySelector(`[data-review-check="${lesson.id}"]`);
+      if (check) {
+        check.checked = Boolean(reviewState[lesson.id]);
+        check.addEventListener('change', () => {
+          reviewState[lesson.id] = check.checked;
+          writeJsonStorage(REVIEW_KEY, reviewState);
+          updateProgress();
+          applyFilters();
+        });
+      }
+
+      const note = util.querySelector(`[data-note="${lesson.id}"]`);
+      if (note) {
+        note.value = noteState[lesson.id] || '';
+        note.addEventListener('input', () => {
+          noteState[lesson.id] = note.value;
+          writeJsonStorage(NOTE_KEY, noteState);
+        });
+      }
+    });
+
+    if (lessonSearch) lessonSearch.addEventListener('input', applyFilters);
+    if (lessonFilter) lessonFilter.addEventListener('change', applyFilters);
+    if (openNext) {
+      openNext.addEventListener('click', () => {
+        const next = lessons.find((lesson) => !reviewState[lesson.id]);
+        if (!next) return;
+        lessons.forEach((lesson) => { lesson.open = lesson === next; });
+        next.style.display = '';
+        next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    }
+    updateProgress();
+    applyFilters();
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
