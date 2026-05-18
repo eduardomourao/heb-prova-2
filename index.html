@@ -360,6 +360,9 @@
       gap: 10px;
       align-items: center;
     }
+    .study-tools[hidden] {
+      display: none;
+    }
 
     .study-tools input,
     .study-tools select {
@@ -967,12 +970,13 @@
       <div class="toolbar">
         <div class="toolbar-info">Página atualizada: aulas 12 a 20, unidades 3 e 4.</div>
         <div class="toolbar-actions">
+          <button type="button" id="toggle-tools" aria-expanded="false">Buscar e filtros</button>
           <button type="button" id="theme-toggle" aria-pressed="false">Modo noturno</button>
           <button type="button" id="expand-all">Expandir aulas</button>
           <button type="button" id="collapse-all">Recolher aulas</button>
         </div>
       </div>
-      <div class="study-tools" aria-label="Ferramentas rápidas de estudo">
+      <div class="study-tools" id="study-tools" aria-label="Ferramentas rápidas de estudo" hidden>
         <input id="lesson-search" type="search" placeholder="Buscar aula, autor, conceito, tema..." autocomplete="off">
         <select id="lesson-filter">
           <option value="all">Todas as aulas</option>
@@ -1612,6 +1616,8 @@
     const themeToggle = document.getElementById('theme-toggle');
     const expandAll = document.getElementById('expand-all');
     const collapseAll = document.getElementById('collapse-all');
+    const toggleTools = document.getElementById('toggle-tools');
+    const studyTools = document.getElementById('study-tools');
     const navLinks = document.querySelectorAll('#top-nav a');
     const sections = document.querySelectorAll('#escopo, #unit-3, #unit-4, #revisao-final');
     const lessonSearch = document.getElementById('lesson-search');
@@ -1669,6 +1675,14 @@
       });
     }
     if (collapseAll) collapseAll.addEventListener('click', () => lessons.forEach((lesson) => { lesson.open = false; }));
+    if (toggleTools && studyTools) {
+      toggleTools.addEventListener('click', () => {
+        const willOpen = studyTools.hidden;
+        studyTools.hidden = !willOpen;
+        toggleTools.setAttribute('aria-expanded', String(willOpen));
+        toggleTools.textContent = willOpen ? 'Ocultar busca' : 'Buscar e filtros';
+      });
+    }
 
     lessons.forEach((lesson) => {
       lesson.addEventListener('toggle', () => {
